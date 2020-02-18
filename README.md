@@ -2,9 +2,9 @@ cheatsheet.md
 # Node API CheatSheet
 
 ## Initial set up with npm
-1. $ npm i -y
-2. $ npm i express knex cors helmet bcryptjs jsonwebtoken axios dotenv sqlite3
-3. $ npm i -D nodemon jest supertest
+> 1. $ npm i -y
+> 2. $ npm i express knex cors helmet bcryptjs jsonwebtoken axios dotenv sqlite3
+> 3. $ npm i -D nodemon jest supertest
 
 ## Setup File Structures  
 This is primarily personal preference, but this is where you'll plan how to structure your folders and files
@@ -38,10 +38,13 @@ Configure index.js to start your server
   const express = require('express');
   const apiRouter = require('./api-router');
   const configureMiddleware = require('./configure-middleware'); 
+
   const server = express();
-  configureMiddleware(server)
+
+  configureMiddleware(server);
+
   server.use('/api', apiRouter); // after the api endpoint is reached, activate "apiRouter"
-  module.exports = server
+  module.exports = server;
 ```
 ## Knex Init
 > $ knex init will create your knexfile.js
@@ -73,7 +76,8 @@ Configure index.js to start your server
   const knex = require('knex');
   const knexfile = require('../knexfile');
   const environment = process.env.NODE_ENV || 'development';
-  module.exports = knex(knexfile[environment])
+
+  module.exports = knex(knexfile[environment]);
 ```
 ## Create a table
 Our data will need structure to lets provide some.
@@ -101,8 +105,8 @@ Our data will need structure to lets provide some.
 ## Knex Seeds
 > $ knex seed:make 000-cleanup
 This is necessary to keep our tables and data clean on each run
-database/seeds/000-cleanup.js
 ```javascript
+  // database/seeds/000-cleanup.js
   const cleaner = require('knex-cleaner');
   exports.seed = function(knex) {
     // Deletes ALL existing entries
