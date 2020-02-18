@@ -27,11 +27,12 @@ This is primarily personal preference, but this is where you'll plan how to stru
 - index.js
 ## Start Your Server
 Configure index.js to start your server
-javascript
+```javascript
   require('dotenv').config();
-  const server = require('./api/server'); <-- The magic will come from this file :male_mage::skin-tone-5:
+  const server = require('./api/server'); // <-- The magic will come from this file 🧙🏾‍♂️
   const PORT = process.env.PORT || 9000
   server.listen(PORT, console.log(`\n*** IT'S OVER ${PORT} ***\n`));
+```
 > ./api/server.js
 ```javascript
   const express = require('express');
@@ -54,7 +55,7 @@ javascript
     },
     pool: {
       afterCreate: (conn, done) => {
-        conn.run('PRAGMA foreign_keys = ON', done); // <-- enforce foreign keys :key:
+        conn.run('PRAGMA foreign_keys = ON', done); // <-- enforce foreign keys 🔑
       },
     },
     migrations: {
@@ -73,13 +74,15 @@ javascript
   const knexfile = require('../knexfile');
   const environment = process.env.NODE_ENV || 'development';
   module.exports = knex(knexfile[environment])
+```
 ## Create a table
-Our data will need structure to lets provide some. Please note ...<br>
-$ knex migrate:make tableName
+Our data will need structure to lets provide some.
+> $ knex migrate:make tableName
 1. This will create a timestamped file name, which will migrate the "latest" when we run migrations
 2. This will create a barebones migration for your table, here is an example of a users table with a username and password column
 3. Also don't forget to drop your exports.down as well to let knex know which table to delete.
-javascript
+
+```javascript
   exports.up = function(knex) {
     return knex.schema.createTable('users', users => {
       users.increments();
